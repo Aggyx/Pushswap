@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+         #
+#    By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/05/19 16:31:25 by smagniny         ###   ########.fr        #
+#    Updated: 2023/05/23 17:34:12 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INC = ./inc/libft/libft.a
 ##COMP
 CC = gcc -Wall -Wextra -Werror
 
-SRC = main.c mv.c mv_norm.c
+SRC = main.c mv.c mv_norm.c parse_params.c Lfunc.c
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
@@ -29,7 +29,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(INC) -o $(NAME)
 
 %.o: %.c
-	@$(CC) -Linc -c $< -o $@
+	@$(CC) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
@@ -38,5 +38,4 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-	
 	
