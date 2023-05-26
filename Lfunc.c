@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Lfunc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:22:30 by smagniny          #+#    #+#             */
-/*   Updated: 2023/05/24 17:23:17 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:16:48 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	rangelistint(t_Stack	*stack)
 
 	node = stack->top;
 	range = 0;
-	minnumber = __INT_MAX__;
-	maxnumber = __WINT_MIN__;
+	minnumber = INT_MAX;
+	maxnumber = INT_MIN;
 	while (node != NULL)
 	{
 		if (node->data < minnumber)

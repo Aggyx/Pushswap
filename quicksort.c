@@ -3,78 +3,123 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 18:52:32 by smagniny          #+#    #+#             */
-/*   Updated: 2023/05/25 16:44:16 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:25:32 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/utils.h"
 
-// C code to implement quicksort
+static	void	printnode(t_Node *cpy)
+{
+	t_Node	*node;
 
-#include <stdio.h>
-#include <stdlib.h>
+	node = cpy;
+	printf("\tPrint stack partition after partition\n");
+	while (node != NULL)
+	{
+		printf("\tnode: %d\n", node->data);
+		node = node->next;
+	}
+	printf("\n");
+}
 
 // Partition the linked list using the last element as the pivot
-static t_Node* partition(t_Node* head, t_Node* end, t_Node** newHead, t_Node** newEnd) {
-    t_Node* pivot = end;
-    t_Node* prev = NULL;
-    t_Node* current = head;
-    t_Node* tail = pivot;
+static	t_Node	*partition(t_Node	*head, t_Node	*end, t_Node	**newhead, t_Node	**newend)
+{
+	t_Node	*pivot;
+	t_Node	*prev;
+	t_Node	*current;
+	t_Node	*tail;
+	t_Node	*tmp;
 
-    while (current != pivot) {
-        if (current->data < pivot->data) {
-            if ((*newHead) == NULL)
-                (*newHead) = current;
-            prev = current;
-            current = current->next;
-        } else {
-            if (prev)
-                prev->next = current->next;
-            t_Node* tmp = current->next;
-            current->next = NULL;
-            tail->next = current;
-            tail = current;
-            current = tmp;
-        }
-    }
+	pivot = end;
+	prev = NULL;
+	current = head;
+	tail = pivot;
+	printf("Partitioning:\n");
+	while (current != pivot)
+	{
+		if (current->data < pivot->data)
+		{
+			printf("\t\tCurrent %d is LOWER than pivot %d\n", current->data, pivot->data);
+			if ((*newhead) == NULL)
+			{	
+				(*newhead) = current;
+				printf("\t\tNewhead: %d\n", (*newhead)->data);
+			}
+			prev = current;
+			current = current->next;
+			printf("\t\tAvanzando current y prev\n");
+		}
+		else
+		{
+			printf("\t\tCurrent %d is GREATER than pivot %d\n", current->data, pivot->data);
+			if (prev)
+			{
+				printf("\t\tPrev %d ", prev->data);
+				printf("Prev->next %d is setting to one forward node ", prev->next->data);
+				prev->next = current->next;
+				printf("Prev->next is %d now. skipping %d\n", prev->next->data, current->data);
+			}
+			printf("\t\tsaving current->next %d into tmp\n", current->next->data);
+			tmp = current->next;
+			current->next = NULL;
+			printf("\t\tSetting current->next to NULL now that is saved\n");
+			if (tail->next != NULL)
+				printf("\t\ttail->next %d",tail->next->data);
+			else
+				printf("\t\ttail->next is NULL\n");
+			tail->next = current;
+			printf("\t\ttail->next %d is set to current %d\n", tail->next->data, current->data);
+			tail = current;
+			printf("\t\ttail %d is set to current %d\n", tail->data, current->data);
+			current = tmp;
+			printf("\t\tCurrent %d is set to saved tmp %d\n", current->data, tmp->data);
+		}
+		printf("\n");
+	}
+	printnode(head);
 
-    if ((*newHead) == NULL)
-        (*newHead) = pivot;
+	if ((*newhead) == NULL)
+		(*newhead) = pivot;
 
-    (*newEnd) = tail;
-
-    return pivot;
+	(*newend) = tail;
+	printf("\tPivot: %d\n", pivot->data);
+	return (pivot);
 }
 
 // The main function that implements QuickSort for a linked list
-void quickSortLinkedList(t_Node** head, t_Node** tail) {
-    if (*head == NULL || *head == *tail)
-        return;
+void	quickSortLinkedList(t_Node	**head, t_Node	**tail)
+{
+	t_Node	*newhead;
+	t_Node	*newend;
+	t_Node	*pivot;
+	t_Node	*tmp;
 
-    t_Node* newHead = NULL;
-    t_Node* newEnd = NULL;
-
-    t_Node* pivot = partition(*head, *tail, &newHead, &newEnd);
-
-    if (newHead != pivot) {
-        t_Node* tmp = newHead;
-        while (tmp->next != pivot)
-            tmp = tmp->next;
-        tmp->next = NULL;
-        quickSortLinkedList(&newHead, &tmp);
-        tmp = newHead;
-        while (tmp->next != NULL)
-            tmp = tmp->next;
-        tmp->next = pivot;
-    }
-
-    pivot->next = NULL;
-
-    quickSortLinkedList(&pivot->next, tail);
-    (*head) = newHead;
+	(void)tmp;
+	if (*head == NULL || *head == *tail)
+		return ;
+	newhead = NULL;
+	newend = NULL;
+	pivot = partition(*head, *tail, &newhead, &newend);
+	if (newhead != pivot)
+	{
+		tmp = newhead;
+		while (tmp->next != pivot)
+			tmp = tmp->next;
+		tmp->next = NULL;
+		quickSortLinkedList(&newhead, &tmp);
+		tmp = newhead;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = pivot;
+	}
+	// pivot->next = NULL;
+	// quickSortLinkedList(&pivot->next, tail);
+	(*head) = newhead;
 }
 
 // // Driver code

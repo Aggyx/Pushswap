@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/05/25 16:53:27 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:27:21 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char *argv[])
 	if (check_order(&stack_a) == 1)
 		panic(&stack_a);
 	check_dupli_manage(&stack_a);
+	printstack(&stack_a);
 	tail = stack_a.top;
 	while (tail->next != NULL)
 		tail = tail->next;
