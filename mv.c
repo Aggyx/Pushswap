@@ -6,7 +6,7 @@
 /*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:19 by smagniny          #+#    #+#             */
-/*   Updated: 2023/05/19 16:24:07 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:51:45 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	push(t_Stack *stack, int x)
 {
 	t_Node	*new_node;
 
-	new_node = (t_Node *) malloc(sizeof(t_Node));
+	new_node = (t_Node *)ft_calloc(sizeof(t_Node), 1);
 	new_node->data = x;
 	new_node->next = stack->top;
 	stack->top = new_node;

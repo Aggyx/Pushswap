@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+         #
+#    By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/05/23 17:34:12 by smagniny         ###   ########.fr        #
+#    Updated: 2023/05/24 19:15:22 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ LIBFT = ./inc/libft/
 INC = ./inc/libft/libft.a
 
 ##COMP
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror -fsanitize=address -g
 
-SRC = main.c mv.c mv_norm.c parse_params.c Lfunc.c
+SRC = main.c mv.c mv_norm.c parse_params.c Lfunc.c dupli.c quicksort.c
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
