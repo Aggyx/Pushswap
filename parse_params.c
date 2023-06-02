@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_params.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:40:42 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/01 17:04:39 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/02 12:55:34 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ static	void	parse_params_norm(t_Stack *stack, char **tmp, int index)
 		return ;
 	while (len > -1)
 	{
-		printf("\t\t\t Pushing %d to stack\n", ft_atoi(tmp[len]));
-		push(stack, ft_atoi(tmp[len--]));
+		printf("atoi: %d", ft_atoi(tmp[len]));
+		printf("\t\t\t Pushing %d to stack from container\n", ft_atoi(tmp[len]));
+		if (ft_atoi(tmp[len--]) != False)
+			push(stack, ft_atoi(tmp[len--]));
+		else
+			panic(stack, 1);
 	}
 }
 
@@ -32,8 +36,8 @@ void	parse_params(t_Stack *stack, char **entry)
 {
 	int		l;
 	char	**tmp;
+
 	l = ft_lendb(entry) - 1;
-	//printf("\tNumber of param from 1: %d\n", l);
 	while (l >= 1)
 	{
 		tmp = ft_split(entry[l], ' ');
@@ -43,9 +47,11 @@ void	parse_params(t_Stack *stack, char **entry)
 		}
 		else
 		{
-			printf("Atoi: %d\n", ft_atoi(entry[l]));
-			if (ft_atoi(entry[l]) == False)
+			printf("atoi: %d", ft_atoi(entry[l]));
+			if (ft_atoi(entry[l]) != False)
 				push(stack, ft_atoi(entry[l]));
+			else
+				printf("Not atoi\n");
 		}
 		doublefree(tmp);
 		l--;

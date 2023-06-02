@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mv_norm.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:36:50 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/01 14:23:41 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/02 11:44:10 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/utils.h"
-
 
 void	reverse_rotate(t_Stack *stack)
 {
@@ -34,7 +33,7 @@ void	reverse_rotate(t_Stack *stack)
 	}
 }
 
-void	push_a_to_b(t_Stack *stack_a, t_Stack *stack_b)
+void	pb(t_Stack *stack_a, t_Stack *stack_b)
 {
 	int	x;
 
@@ -46,14 +45,14 @@ void	push_a_to_b(t_Stack *stack_a, t_Stack *stack_b)
 	}
 }
 
-void	push_b_to_a(t_Stack *stack_a, t_Stack *stack_b)
+void	pa(t_Stack *stack_a, t_Stack *stack_b)
 {
 	int	x;
 
-	printf("pb\n");
+	printf("pa\n");
 	if (!is_empty(stack_b))
 	{
-        x = pop(stack_b);
+		x = pop(stack_b);
 		push(stack_a, x);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chainfactory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:19:04 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/01 14:14:24 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/02 11:57:22 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static	void	push_umin(t_Stack *stack_a, t_Stack *stack_b)
 	mouvs = 0;
 	flagmin = 1;
 	len = 0;
+	if (stack_a->top->next == NULL)
+		return ;
 	while (flagmin)
 	{
 		// printstack(stack_a, 'a');
@@ -60,14 +62,14 @@ static	void	push_umin(t_Stack *stack_a, t_Stack *stack_b)
 			len = lstsize(stack_b) + 1;
 			while (--len > -1)
 			{	
-				push_b_to_a(stack_a, stack_b);
+				pa(stack_a, stack_b);
 				mouvs++;
 			}
 			flagmin = 0;
 		}
 		if (flagmin)
 		{
-			push_a_to_b(stack_a, stack_b);
+			pb(stack_a, stack_b);
 			mouvs++;
 		}
 	}

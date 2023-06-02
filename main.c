@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/01 17:05:35 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/02 12:30:32 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 // {
 // 	system("valgrind --leak-check=full ./Push_swap");
 // }
-void	panic(t_Stack	*stack)
+void	panic(t_Stack	*stack, int error)
 {
 	freestack(stack);
-	ft_putendl_fd("Error\n", 2);
+	if (error)
+		ft_putendl_fd("Error\n", 2);
 	exit(0);
 }
 
@@ -51,8 +52,10 @@ int	main(int argc, char *argv[])
 	initialize(&stack_a);
 	initialize(&stack_b);
 	parse_params(&stack_a, argv);
-	// if (check_dupli_manage(&stack_a) == 0)
-	// 	panic(&stack_a, "Error");
+	if (check_order(&stack_a) == 1)
+		panic(&stack_a, 0);
+	if (check_dupli_manage(&stack_a) == 0)
+		panic(&stack_a, 1);
 	//printstack(&stack_a, 'a');
 	chainfilter(&stack_a, &stack_b);
 	// tail = stack_a.top;
