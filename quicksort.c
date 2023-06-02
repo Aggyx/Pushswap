@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 18:52:32 by smagniny          #+#    #+#             */
-/*   Updated: 2023/05/26 14:25:32 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:29:44 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	void	printnode(t_Node *cpy)
 
 	node = cpy;
 	printf("\tPrint stack partition after partition\n");
-	while (node != NULL)
+	while (node->next != NULL)
 	{
 		printf("\tnode: %d\n", node->data);
 		node = node->next;
@@ -35,6 +35,8 @@ static	t_Node	*partition(t_Node	*head, t_Node	*end, t_Node	**newhead, t_Node	**n
 	t_Node	*tail;
 	t_Node	*tmp;
 
+	(void)tmp;
+	(void)prev;
 	pivot = end;
 	prev = NULL;
 	current = head;
@@ -56,36 +58,36 @@ static	t_Node	*partition(t_Node	*head, t_Node	*end, t_Node	**newhead, t_Node	**n
 		}
 		else
 		{
-			printf("\t\tCurrent %d is GREATER than pivot %d\n", current->data, pivot->data);
-			if (prev)
-			{
-				printf("\t\tPrev %d ", prev->data);
-				printf("Prev->next %d is setting to one forward node ", prev->next->data);
-				prev->next = current->next;
-				printf("Prev->next is %d now. skipping %d\n", prev->next->data, current->data);
-			}
-			printf("\t\tsaving current->next %d into tmp\n", current->next->data);
-			tmp = current->next;
-			current->next = NULL;
-			printf("\t\tSetting current->next to NULL now that is saved\n");
-			if (tail->next != NULL)
-				printf("\t\ttail->next %d",tail->next->data);
-			else
-				printf("\t\ttail->next is NULL\n");
-			tail->next = current;
-			printf("\t\ttail->next %d is set to current %d\n", tail->next->data, current->data);
-			tail = current;
-			printf("\t\ttail %d is set to current %d\n", tail->data, current->data);
-			current = tmp;
-			printf("\t\tCurrent %d is set to saved tmp %d\n", current->data, tmp->data);
+
+			//CHECK MOUVEMENTS FOR REACH TOP STACK and RA
+			// printf("\t\tCurrent %d is GREATER than pivot %d\n", current->data, pivot->data);
+			
+			// if (prev)
+			// {
+			// 	printf("\t\tPrev %d ", prev->data);
+			// 	printf("Prev->next %d is setting to one forward node ", prev->next->data);
+			// 	prev->next = current->next;
+			// 	printf("Prev->next is %d now. skipping %d\n", prev->next->data, current->data);
+			// }
+			// printf("\t\tsaving current->next %d into tmp\n", current->next->data);
+			// tmp = current->next;
+			// current->next = NULL;
+			// printf("\t\tSetting current->next to NULL now that is saved\n");
+			// if (tail->next != NULL)
+			// 	printf("\t\ttail->next %d",tail->next->data);
+			// else
+			// 	printf("\t\ttail->next is NULL\n");
+			// tail->next = current;
+			// printf("\t\ttail->next %d is set to current %d\n", tail->next->data, current->data);
+			// tail = current;
+			// printf("\t\ttail %d is set to current %d\n", tail->data, current->data);
+			// current = tmp;
+			// printf("\t\tCurrent %d is set to saved tmp %d\n", current->data, tmp->data);
 		}
 		printf("\n");
 	}
-	printnode(head);
-
 	if ((*newhead) == NULL)
 		(*newhead) = pivot;
-
 	(*newend) = tail;
 	printf("\tPivot: %d\n", pivot->data);
 	return (pivot);
@@ -105,6 +107,7 @@ void	quickSortLinkedList(t_Node	**head, t_Node	**tail)
 	newhead = NULL;
 	newend = NULL;
 	pivot = partition(*head, *tail, &newhead, &newend);
+	printf("pivot %d\n", pivot->data);
 	if (newhead != pivot)
 	{
 		tmp = newhead;
@@ -116,9 +119,9 @@ void	quickSortLinkedList(t_Node	**head, t_Node	**tail)
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = pivot;
+		quickSortLinkedList(&newhead, &tmp);
 	}
-	// pivot->next = NULL;
-	// quickSortLinkedList(&pivot->next, tail);
+	printnode(newhead);
 	(*head) = newhead;
 }
 

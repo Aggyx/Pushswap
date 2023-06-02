@@ -6,7 +6,7 @@
 #    By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/05/24 19:15:22 by smagniny         ###   ########.fr        #
+#    Updated: 2023/06/01 14:10:03 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INC = ./inc/libft/libft.a
 ##COMP
 CC = gcc -Wall -Wextra -Werror -fsanitize=address -g
 
-SRC = main.c mv.c mv_norm.c parse_params.c Lfunc.c dupli.c quicksort.c
+SRC = main.c mv.c mv_norm.c parse_params.c Lfunc.c dupli.c quicksort.c chainfactory.c mv2_norm.c
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
