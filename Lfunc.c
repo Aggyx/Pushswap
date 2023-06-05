@@ -6,7 +6,7 @@
 /*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:22:30 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/01 02:03:34 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/04 14:29:54 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	lstsize(t_Stack *lst)
 		return (0);
 	i = 0;
 	ptr = lst->top;
+	if (ptr->next == NULL && ptr)
+		return (1);
 	while (ptr->next != NULL && ptr)
 	{
 		ptr = ptr->next;
