@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/02 12:30:32 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:41:14 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	printstack(t_Stack *stack, char id)
 	t_Node	*curr_node;
 
 	curr_node = stack->top;
-	printf("Stack_%c: \n", id);
+	printf("\nStack_%c: \n", id);
 	while (curr_node != NULL)
 	{
 		printf("%d \n", curr_node->data);
@@ -44,24 +44,16 @@ int	main(int argc, char *argv[])
 	t_Stack	stack_b;
 
 	if (argc < 2)
-	{
-		ft_putendl_fd("Error\n", 2);
 		return (0);
-	}
 	// atexit(sys_leaks);
 	initialize(&stack_a);
 	initialize(&stack_b);
 	parse_params(&stack_a, argv);
-	if (check_order(&stack_a) == 1)
+	if (check_asc(&stack_a) == 1)
 		panic(&stack_a, 0);
 	if (check_dupli_manage(&stack_a) == 0)
 		panic(&stack_a, 1);
-	//printstack(&stack_a, 'a');
 	chainfilter(&stack_a, &stack_b);
-	// tail = stack_a.top;
-	// while (tail->next != NULL)
-	// 	tail = tail->next;
-	//quickSortLinkedList(&stack_a.top, &tail);
 	freestack(&stack_a);
 	freestack(&stack_b);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Lfunc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:22:30 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/01 02:03:34 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:07:10 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int	lstsize(t_Stack *lst)
 
 	if (lst->top == NULL)
 		return (0);
-	i = 0;
+	i = 1;
 	ptr = lst->top;
+	if (ptr->next == NULL && ptr)
+		return (1);
 	while (ptr->next != NULL && ptr)
 	{
 		ptr = ptr->next;
@@ -62,6 +64,23 @@ int	minlistint(t_Stack	*stack)
 	while (tmp != NULL)
 	{
 		if (tmp->data < minnumber)
+			minnumber = tmp->data;
+		tmp = tmp->next;
+	}
+	free(tmp);
+	return (minnumber);
+}
+
+int	maxlistint(t_Stack	*stack)
+{
+	t_Node	*tmp;
+	int		minnumber;
+
+	tmp = stack->top;
+	minnumber = INT_MIN;
+	while (tmp != NULL)
+	{
+		if (tmp->data > minnumber)
 			minnumber = tmp->data;
 		tmp = tmp->next;
 	}

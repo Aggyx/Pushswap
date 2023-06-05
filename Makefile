@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+         #
+#    By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/06/01 14:10:03 by smagniny         ###   ########.fr        #
+#    Updated: 2023/06/05 17:05:34 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Push_swap
+NAME = push_swap
 
 ##INCLUDES
 LIBFT = ./inc/libft/
@@ -19,7 +19,7 @@ INC = ./inc/libft/libft.a
 ##COMP
 CC = gcc -Wall -Wextra -Werror -fsanitize=address -g
 
-SRC = main.c mv.c mv_norm.c parse_params.c Lfunc.c dupli.c quicksort.c chainfactory.c mv2_norm.c
+SRC = main.c mv.c mv_norm.c parse_params.c Lfunc.c dupli.c chainfactory.c mv2_norm.c
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
