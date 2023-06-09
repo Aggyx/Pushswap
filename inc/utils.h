@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:17:25 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/05 15:03:07 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:36:21 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct Node
 {
 	int				data;
+	int				index;
 	struct Node		*next;
 }		t_Node;
 

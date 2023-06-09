@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:19:04 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/09 15:24:40 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:20:30 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static	int	filter(t_Stack *stack_a, t_Stack *stack_b, int *mouvs)
 	return (x);
 }
 
-static void sort_newnum_pb(t_Stack *stack_b)
+static	void	sort_newnum_pb(t_Stack *stack_b)
 {
 	int	x;
 	int	new_num;
@@ -97,7 +97,7 @@ static	void	push_umin(t_Stack *stack_a, t_Stack *stack_b)
 	{
 		while (filter(stack_a, stack_b, &mouvs))
 			;
-		if (!check_asc(stack_a)) //&& minlistint(stack_a) == stack_a->top->data)
+		if (!check_asc(stack_a))
 		{
 			pb(stack_a, stack_b);
 			mouvs++;
@@ -122,9 +122,6 @@ static	void	push_umin(t_Stack *stack_a, t_Stack *stack_b)
 				printf("Out of midstackB\n");
 			}
 		}
-		// else if (!check_asc(stack_a) && \
-		// 	minlistint(stack_a) != stack_a->top->data)
-		// 	rra(stack_a);
 		if (check_asc(stack_a) && lstsize(stack_b) && check_desc(stack_b))
 			pa(stack_a, stack_b);
 		if (check_asc(stack_a) && !lstsize(stack_b))
