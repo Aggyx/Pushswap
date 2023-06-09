@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/05 16:41:14 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:57:55 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	printstack(t_Stack *stack, char id)
 	printf("\nStack_%c: \n", id);
 	while (curr_node != NULL)
 	{
-		printf("%d \n", curr_node->data);
+		printf("%d ", curr_node->data);
 		curr_node = curr_node->next;
 	}
 	printf("-------\n");
