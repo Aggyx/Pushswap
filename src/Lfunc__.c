@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Lfunc.c                                            :+:      :+:    :+:   */
+/*   Lfunc__.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 17:22:30 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/05 16:07:10 by smagniny         ###   ########.fr       */
+/*   Created: 2023/06/10 16:35:12 by smagniny          #+#    #+#             */
+/*   Updated: 2023/06/10 19:24:00 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/utils.h"
+#include "../inc/utils.h"
 
 int	lstsize(t_Stack *lst)
 {
@@ -19,7 +19,7 @@ int	lstsize(t_Stack *lst)
 
 	if (lst->top == NULL)
 		return (0);
-	i = 1;
+	i = 0;
 	ptr = lst->top;
 	if (ptr->next == NULL && ptr)
 		return (1);
@@ -29,6 +29,38 @@ int	lstsize(t_Stack *lst)
 		i++;
 	}
 	return (i);
+}
+
+void	freestack(t_Stack	*stack)
+{
+	t_Node	*node;
+	t_Node	*temp;
+
+	node = stack->top;
+	while (node != NULL)
+	{
+		temp = node;
+		node = node->next;
+		free(temp);
+	}
+	free(stack);
+}
+
+int	minlistint(t_Stack	*stack)
+{
+	t_Node	*tmp;
+	int		minnumber;
+
+	tmp = stack->top;
+	minnumber = __INT_MAX__;
+	while (tmp != NULL)
+	{
+		if (tmp->data < minnumber)
+			minnumber = tmp->data;
+		tmp = tmp->next;
+	}
+	free(tmp);
+	return (minnumber);
 }
 
 int	rangelistint(t_Stack	*stack)
@@ -54,61 +86,19 @@ int	rangelistint(t_Stack	*stack)
 	return (range);
 }
 
-int	minlistint(t_Stack	*stack)
-{
-	t_Node	*tmp;
-	int		minnumber;
-
-	tmp = stack->top;
-	minnumber = __INT_MAX__;
-	while (tmp != NULL)
-	{
-		if (tmp->data < minnumber)
-			minnumber = tmp->data;
-		tmp = tmp->next;
-	}
-	free(tmp);
-	return (minnumber);
-}
-
-int	maxlistint(t_Stack	*stack)
-{
-	t_Node	*tmp;
-	int		minnumber;
-
-	tmp = stack->top;
-	minnumber = INT_MIN;
-	while (tmp != NULL)
-	{
-		if (tmp->data > minnumber)
-			minnumber = tmp->data;
-		tmp = tmp->next;
-	}
-	free(tmp);
-	return (minnumber);
-}
-
-void	freestack(t_Stack	*stack)
+int	check_desc(t_Stack *stack)
 {
 	t_Node	*node;
-	t_Node	*temp;
 
 	node = stack->top;
-	while (node != NULL)
+	while (node->next != NULL && node)
 	{
-		temp = node;
-		node = node->next;
-		free(temp);
+		if (node->data > node->next->data)
+			node = node->next;
+		else
+			return (0);
 	}
-	stack->top = NULL;
+	return (1);
 }
 
-t_Node	*lastelem(t_Stack	*stack)
-{
-	t_Node	*tmp;
 
-	tmp = stack->top;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp);
-}

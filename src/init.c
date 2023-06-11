@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_params.c                                     :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 16:40:42 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/05 16:40:58 by smagniny         ###   ########.fr       */
+/*   Created: 2023/06/10 11:12:55 by smagniny          #+#    #+#             */
+/*   Updated: 2023/06/10 19:28:45 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/utils.h"
+#include "../inc/utils.h"
 
 static int	aatoi_norm(unsigned	int	*nb, int *sign, int *success)
 {
@@ -54,25 +54,23 @@ static int	aatoi(const char *str, int *success)
 	return (aatoi_norm(&nb, &sign, success));
 }
 
-static	void	parse_params_norm(t_Stack *stack, char **tmp)
+static	void	parse_params_norm(t_Stack *stack, char **tmp, int index)
 {
 	int		len;
 	int		s;
 
 	s = 0;
+	printf("\t\tContainer of number found in params in argv[%d];\n", index);
 	len = ft_lendb(tmp) - 1;
 	if (tmp == NULL || len == 0)
 		return ;
-	while (len >= 0)
+	while (len > -1)
 	{
 		aatoi(tmp[len], &s);
-		if (s == 1)
+		if (s != False)
 			push(stack, aatoi(tmp[len], &s));
 		else
-		{
-			doublefree(tmp);
-			panic(stack, 1);
-		}
+			panic(1, 1, stack);
 		len--;
 	}
 }
@@ -89,7 +87,7 @@ void	parse_params(t_Stack *stack, char **entry)
 	{
 		tmp = ft_split(entry[l], ' ');
 		if (ft_lendb(tmp) > 1)
-			parse_params_norm(stack, tmp);
+			parse_params_norm(stack, tmp, l);
 		else
 		{
 			aatoi(entry[l], &s);
@@ -98,7 +96,7 @@ void	parse_params(t_Stack *stack, char **entry)
 			else
 			{
 				doublefree(tmp);
-				panic(stack, 1);
+				panic(1, 1,stack);
 			}
 		}
 		doublefree(tmp);
@@ -106,32 +104,12 @@ void	parse_params(t_Stack *stack, char **entry)
 	}
 }
 
-int	check_asc(t_Stack *stack)
+t_Node	*lastelem(t_Stack	*stack)
 {
-	t_Node	*node;
+	t_Node	*tmp;
 
-	node = stack->top;
-	while (node->next != NULL && node)
-	{
-		if (node->data < node->next->data)
-			node = node->next;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int	check_desc(t_Stack *stack)
-{
-	t_Node	*node;
-
-	node = stack->top;
-	while (node->next != NULL && node)
-	{
-		if (node->data > node->next->data)
-			node = node->next;
-		else
-			return (0);
-	}
-	return (1);
+	tmp = stack->top;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
 }
