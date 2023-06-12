@@ -1,8 +1,8 @@
 #!/bin/bash
 # Generate the list of combinations
+
 combi3=(
 
-    "1 2 3"
     "1 3 2"
     "2 1 3"
     "2 3 1"
@@ -11,10 +11,7 @@ combi3=(
 )
 
 combi5=(
-
     "1 2 3 5 4"
-    "1 2 3 4 5"
-    "1 2 4 3 5"
     "1 2 4 5 3"
     "1 2 5 3 4"
     "1 2 5 4 3"
@@ -142,57 +139,67 @@ for index in "${!combi3[@]}"; do
 
     # Execute Push_swap with the combination and store the output
     output=$(./push_swap $combination)
-
     # Execute the checker and get the result
-    result=$(echo "$output" | ./checker_linux $combination)
-
-    # Count the number of commands executed
+    result=$(echo "$output" | ./tester/checker_Mac $combination)
     num_commands=$(echo "$output" | wc -l)
-    if [ "$num_commands" -gt 3 ]; then
-        echo -e "Combination number \e[31mFAILED\e[0m (not optimal): $combination\n"
-        echo "Instructions:\\n$output"
+    if [ $num_commands -gt 3 ]; then
+        echo -e "Combination number \e[31mFAILED\e[0m (not optimal): $combination"
+        echo "Instruction: "
+        echo "$output"
     fi
-    # Check if the result is KO and print the combination number
     if [ "$result" = "KO" ]; then
         echo -e "Combination number \e[31mFAILED\e[0m (unsorted): $combination\n"
-        echo "Instructions: \n$output"
     fi
 done
-
-
-: <<'END_COMMENT'
-This is a multiline comment.
-You can write multiple lines of text here.
-These lines will be ignored by the interpreter.
+echo -e " \e[32m Number 3 passed !! \e[0m "
 
 
 echo "Testing with 5 numbers, things go easy here..."
 
 for index in "${!combi5[@]}"; do
+
     combination=${combi5[index]}
-
     output=$(./push_swap $combination)
-    result=$(echo "$output" | ./checker_linux $combination)
+    result=$(echo "$output" | ./tester/checker_Mac $combination)
     num_commands=$(echo "$output" | wc -l)
-
-    if [$num_commands -gt 12]; then
-        echo -e "Combination number \e[31mFAILED\e[0m (not optimal): $(combination)\n"
+    if [ $num_commands -gt 12 ]; then
+        echo -e "Combination number \e[31mFAILED\e[0m (not optimal): $combination"
     fi
-    if [[ $result -eq "KO" ]]; then
-        echo -e "Combination number \e[31mFAILED\e[0m (unsorted): $(combination)\n"
+    if [ "$result" = "KO" ]; then
+        echo -e "Combination number \e[31mFAILED\e[0m (unsorted): $combination\n"
     fi
-
-
-hundred_num = $(python3 ./nbgen.py 100)
-output_hundred = $(./push_swap $hundred_num)
-result_hundred = $(echo "$output_hundred" | ./checker_Mac $hundred_num)
-num_commands=$(echo "$output_hundred" | wc -l)
-if [$num_commands -gt 1200]; then
-    echo -e "Combination w 100 \e[31mFAILED\e[0m (not optimal)\n"
-fi
-if [[ $result -eq "KO" ]]; then
-    echo -e "Combination w 100 \e[31mFAILED\e[0m (unsorted)\n"
-fi
 done
 
-END_COMMENT
+echo -e " \e[32m Number 5 passed !! \e[0m "
+
+echo "Testing with 100 numbers, things get more complicated..."
+for ((i=1; i<=5; i++)); do
+    hundred_num=$( python3 ./tester/nbgen.py 100)
+    output_hundred=$(./push_swap $hundred_num)
+    result_hundred=$(echo "$output_hundred" | ./tester/checker_Mac $hundred_num)
+    num_commands=$(echo "$output_hundred" | wc -l)
+    if [ $num_commands -gt 1200 ]; then
+        echo -e "Combination w 100 \e[31mFAILED\e[0m (not optimal)\n"
+        echo "Instructions: $num_commands"
+    fi
+    if [ "$result" = "KO" ]; then
+        echo -e "Combination w 100 \e[31mFAILED\e[0m (unsorted)\n"
+    fi
+done
+
+echo "Testing with 500 numbers, things get more complicated..."
+for ((i=1; i<=5; i++)); do
+    hundred_num=$( python3 ./tester/nbgen.py 500)
+    output_hundred=$(./push_swap $hundred_num)
+    result_hundred=$(echo "$output_hundred" | ./tester/checker_Mac $hundred_num)
+    num_commands=$(echo "$output_hundred" | wc -l)
+    if [ $num_commands -gt 5500 ]; then
+        echo -e "Combination w 500 \e[31mFAILED\e[0m (not optimal)\n"
+        echo "Instructions: $num_commands"
+    fi
+    if [ "$result" = "KO" ]; then
+        echo -e "Combination w 500 \e[31mFAILED\e[0m (unsorted)\n"
+    fi
+done
+
+

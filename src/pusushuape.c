@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pusushuape.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/11 16:53:17 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:35:23 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,10 @@ void	printstack(t_Stack *stack, char id)
 	printf("\nStack_%c: \n", id);
 	while (curr_node != NULL)
 	{
-		printf("data: %d   index: %d", curr_node->data, curr_node->index);
+		printf("data: %d   index: %d\n", curr_node->data, curr_node->index);
 		curr_node = curr_node->next;
 	}
 	printf("-------\n");
-}
-
-static void	sort(t_Stack *stack_a, t_Stack *stack_b)
-{
-	if (lstsize(stack_a) <= 5)
-		chainfilter(stack_a, stack_b);
-	else
-		radix_sort(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -73,7 +65,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		set_index(stack_a);
-		sort(stack_a, stack_b);
+		find_to_push(stack_a, stack_b);
 		freestack(stack_a);
 		freestack(stack_b);
 	}

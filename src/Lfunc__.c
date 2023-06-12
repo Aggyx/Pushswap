@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Lfunc__.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:35:12 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/10 19:24:00 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:30:01 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	lstsize(t_Stack *lst)
 		return (0);
 	i = 0;
 	ptr = lst->top;
-	if (ptr->next == NULL && ptr)
-		return (1);
+	if (ptr)
+		i += 1;
 	while (ptr->next != NULL && ptr)
 	{
 		ptr = ptr->next;
@@ -46,7 +46,7 @@ void	freestack(t_Stack	*stack)
 	free(stack);
 }
 
-int	minlistint(t_Stack	*stack)
+t_Node	*minlistnode(t_Stack	*stack)
 {
 	t_Node	*tmp;
 	int		minnumber;
@@ -59,8 +59,14 @@ int	minlistint(t_Stack	*stack)
 			minnumber = tmp->data;
 		tmp = tmp->next;
 	}
-	free(tmp);
-	return (minnumber);
+	tmp = stack->top;
+	while (tmp != NULL)
+	{
+		if (tmp->data == minnumber)
+			break ;
+		tmp = tmp->next;
+	}
+	return (tmp);
 }
 
 int	rangelistint(t_Stack	*stack)

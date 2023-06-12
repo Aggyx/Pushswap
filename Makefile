@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+         #
+#    By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/06/11 16:54:36 by smagniny         ###   ########.fr        #
+#    Updated: 2023/06/12 17:22:28 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,13 @@ CC = gcc -Wall -Wextra -Werror -fsanitize=address -g
 
 SRC = src/pusushuape.c \
 		src/mv.c src/mv_norm.c \
-		src/Lfunc.c src/Lfunc__.c \
+		src/Lfunc.c src/Lfunc__.c  src/Lfunc___.c\
 		src/init.c \
 		src/dupli.c src/index.c \
 		src/cpystack.c \
 		src/chainfilter.c \
-		src/radix.c
+		src/radix.c \
+		src/chunks.c \
 	
 OBJ = $(SRC:%.c=%.o)
 
@@ -50,3 +51,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+test:
+	./bashtester

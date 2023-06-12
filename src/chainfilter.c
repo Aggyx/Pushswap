@@ -6,14 +6,17 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:15:05 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/12 12:46:03 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:53:22 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/utils.h"
 
-static void	filter_a(t_Stack *stack_a, int *x)
+static int	filter_a(t_Stack *stack_a)
 {
+	int	x;
+
+	x = 0;
 	if (stack_a->top->data > stack_a->top->next->data)
 	{
 		sa(stack_a);
@@ -32,10 +35,14 @@ static void	filter_a(t_Stack *stack_a, int *x)
 		sa(stack_a);
 		x++;
 	}
+	return (x);
 }
 
-static void	filter_b(t_Stack *b, int *x)
+int	filter_b(t_Stack *b)
 {
+	int	x;
+
+	x = 0;
 	if (lastelem(b)->data > b->top->data)
 	{
 		rb(b);
@@ -54,6 +61,7 @@ static void	filter_b(t_Stack *b, int *x)
 			x++;
 		}
 	}
+	return (x);
 }
 
 static	int	filter(t_Stack *stack_a, t_Stack *stack_b)
@@ -63,17 +71,19 @@ static	int	filter(t_Stack *stack_a, t_Stack *stack_b)
 
 	x = 0;
 	tmp = cpystack(stack_b);
-	filter_a(stack_a, &x);
+	x += filter_a(stack_a);
 	if (lstsize(tmp) > 1)
-		filter_b(stack_b, &x);
+		x += filter_b(stack_b);
 	freestack(tmp);
 	return (x);
 }
 
 void	chainfilter(t_Stack *stack_a, t_Stack *stack_b)
 {
+	t_Stack	rtmp;
 	int		flag;
 
+	rtmp.top = NULL;
 	flag = 1;
 	if (stack_a->top->next == NULL)
 		return ;

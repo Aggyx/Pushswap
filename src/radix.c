@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 18:52:32 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/11 15:59:09 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:07:07 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	radix_sort(t_Stack *stack_a, t_Stack *stack_b)
 		while (j++ < size)
 		{
 			head_a = stack_a;
-			if (((head_a->top->index >> i) & 1) == 1)
-				ra(stack_a);
-			else
+			if (((head_a->top->index >> i) & 1) == 0)
 				pb(stack_a, stack_b);
+			else
+				ra(stack_a);
 		}
 		while (lstsize(stack_b) != 0)
 			pa(stack_a, stack_b);

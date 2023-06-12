@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mv.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:09:37 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/10 16:30:20 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:05:57 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	ra(t_Stack *stack)
 	{
 		last_node = stack->top;
 		while (last_node->next != NULL)
-		{
 			last_node = last_node->next;
-		}
 		last_node->next = stack->top;
+		stack->top->prev = last_node;
 		stack->top = stack->top->next;
+		stack->top->prev = NULL;
 		last_node->next->next = NULL;
 	}
 }
@@ -43,7 +43,9 @@ void	rb(t_Stack *stack)
 			last_node = last_node->next;
 		}
 		last_node->next = stack->top;
+		stack->top->prev = last_node;
 		stack->top = stack->top->next;
+		stack->top->prev = NULL;
 		last_node->next->next = NULL;
 	}
 }
@@ -73,3 +75,4 @@ void	sb(t_Stack *stack)
 		stack->top->next->data = tmp;
 	}
 }
+

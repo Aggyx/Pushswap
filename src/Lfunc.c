@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Lfunc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:19 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/10 19:28:37 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:12:16 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void	push(t_Stack *stack, int x)
 	new_node = (t_Node *)ft_calloc(sizeof(t_Node), 1);
 	new_node->data = x;
 	new_node->index = -0;
+	new_node->prev = NULL;
 	new_node->next = stack->top;
+	if (stack->top != NULL)
+	{
+		stack->top->prev = new_node;
+	}
 	stack->top = new_node;
 }
 
@@ -41,6 +46,10 @@ int	pop(t_Stack *stack)
 	x = stack->top->data;
 	tmp = stack->top;
 	stack->top = stack->top->next;
+	if (stack->top != NULL)
+	{
+		stack->top->prev = NULL;
+	}
 	free(tmp);
 	return (x);
 }
@@ -60,8 +69,10 @@ void	reverse_rotate(t_Stack *stack)
 			curr_node = curr_node->next;
 		}
 		curr_node->next = stack->top;
+		stack->top->prev = curr_node;
 		stack->top = curr_node;
 		prev_node->next = NULL;
+		curr_node->prev = NULL;
 	}
 }
 

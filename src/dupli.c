@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dupli.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:24:52 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/10 17:02:34 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:29:49 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_dupli(t_Stack *stack, int	*table)
 	int		minnum;
 
 	node = stack->top;
-	minnum = minlistint(stack);
+	minnum = minlistnode(stack)->data;
 	node = stack->top;
 	while (node != NULL)
 	{

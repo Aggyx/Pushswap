@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:12:55 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/10 19:28:45 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:36:21 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,12 @@ static int	aatoi(const char *str, int *success)
 	return (aatoi_norm(&nb, &sign, success));
 }
 
-static	void	parse_params_norm(t_Stack *stack, char **tmp, int index)
+static	void	parse_params_norm(t_Stack *stack, char **tmp)
 {
 	int		len;
 	int		s;
 
 	s = 0;
-	printf("\t\tContainer of number found in params in argv[%d];\n", index);
 	len = ft_lendb(tmp) - 1;
 	if (tmp == NULL || len == 0)
 		return ;
@@ -87,7 +86,7 @@ void	parse_params(t_Stack *stack, char **entry)
 	{
 		tmp = ft_split(entry[l], ' ');
 		if (ft_lendb(tmp) > 1)
-			parse_params_norm(stack, tmp, l);
+			parse_params_norm(stack, tmp);
 		else
 		{
 			aatoi(entry[l], &s);
@@ -96,7 +95,7 @@ void	parse_params(t_Stack *stack, char **entry)
 			else
 			{
 				doublefree(tmp);
-				panic(1, 1,stack);
+				panic(1, 1, stack);
 			}
 		}
 		doublefree(tmp);
