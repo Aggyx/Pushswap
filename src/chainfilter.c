@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chainfilter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:15:05 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/10 19:32:43 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:40:30 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,37 +56,33 @@ static void	filter_b(t_Stack *b, int *x)
 	}
 }
 
-static	int	filter(t_Stack *stack_a, t_Stack *stack_b, int *mouvs)
+static	int	filter(t_Stack *stack_a, t_Stack *stack_b)
 {
-	int	x;
+	int		x;
+	t_Stack	*tmp;
 
 	x = 0;
-	mouvs = 0;
+	tmp = cpystack(stack_b);
 	filter_a(stack_a, &x);
-	if (lstsize(stack_b) > 1)
+	if (lstsize(tmp) > 1)
 		filter_b(stack_b, &x);
-	mouvs += x;
-	return (*mouvs);
+	freestack(tmp);
+	return (x);
 }
 
 void	chainfilter(t_Stack *stack_a, t_Stack *stack_b)
 {
-	int		mouvs;
 	int		flag;
 
-	mouvs = 0;
 	flag = 1;
 	if (stack_a->top->next == NULL)
 		return ;
 	while (flag)
 	{
-		while (filter(stack_a, stack_b, &mouvs))
+		while (filter(stack_a, stack_b))
 			;
 		if (!check_asc(stack_a))
-		{
 			pb(stack_a, stack_b);
-			mouvs++;
-		}
 		if (check_asc(stack_a) && lstsize(stack_b) && check_desc(stack_b))
 			pa(stack_a, stack_b);
 		if (check_asc(stack_a) && !lstsize(stack_b))
