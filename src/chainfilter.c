@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:15:05 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/12 18:53:22 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:16:04 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	filter_a(t_Stack *stack_a)
 	return (x);
 }
 
-int	filter_b(t_Stack *b)
+static	int	filter_b(t_Stack *b)
 {
 	int	x;
 

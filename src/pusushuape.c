@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/12 18:35:23 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:23:27 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ void	printstack(t_Stack *stack, char id)
 	printf("-------\n");
 }
 
+void	sort(t_Stack *stack_a, t_Stack *stack_b)
+{
+	int	ch;
+
+	ch = num_chunks(lstsize(stack_a));
+	if (lstsize(stack_a) <= 5)
+		chainfilter(stack_a, stack_b);
+	else
+		chunks_to_b(stack_a, stack_b, lstsize(stack_a), ch);
+}
+
 int	main(int argc, char **argv)
 {
 	t_Stack	*stack_a;
@@ -65,7 +76,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		set_index(stack_a);
-		find_to_push(stack_a, stack_b);
+		sort(stack_a, stack_b);
 		freestack(stack_a);
 		freestack(stack_b);
 	}

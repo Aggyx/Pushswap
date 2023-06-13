@@ -6,7 +6,7 @@
 #    By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/06/12 17:22:28 by smagniny         ###   ########.fr        #
+#    Updated: 2023/06/13 18:07:29 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,7 @@ SRC = src/pusushuape.c \
 		src/dupli.c src/index.c \
 		src/cpystack.c \
 		src/chainfilter.c \
-		src/radix.c \
-		src/chunks.c \
+		src/chunks.c src/chunks_.c \
 	
 OBJ = $(SRC:%.c=%.o)
 
