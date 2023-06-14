@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:09:37 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/12 18:05:57 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/14 10:58:23 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ void	sb(t_Stack *stack)
 		stack->top->next->data = tmp;
 	}
 }
-

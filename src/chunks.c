@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:10:40 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/13 18:08:11 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/14 10:57:39 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,3 @@ void	chunks_to_b(t_Stack *stack_a, t_Stack *stack_b, int len, int ch)
 	}
 	push_chunks_to_a(stack_a, stack_b);
 }
-
-
-

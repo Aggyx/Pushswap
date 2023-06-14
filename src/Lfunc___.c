@@ -6,11 +6,21 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:17:56 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/13 18:01:46 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/14 12:09:49 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/utils.h"
+
+t_Node	*lastelem(t_Stack	*stack)
+{
+	t_Node	*tmp;
+
+	tmp = stack->top;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
+}
 
 int	get_stack_index(t_Stack *stack, t_Node *node)
 {
@@ -73,5 +83,18 @@ int	num_chunks(int ttlen)
 		return (5);
 	if (ttlen == 500)
 		return (10);
+
+	// chunk = 1;
+	// if (size < 50)
+	// 	chunk = 3 + (size - 6) / 7;
+	// else if (size >= 50 && size < 100)
+	// 	chunk = 10 + (size - 50) / 8;
+	// else if (size >= 100 && size < 350)
+	// 	chunk = 15;
+	// else if (size >= 350 && size <= 500)
+	// 	chunk = 27 + (size - 350) / 15;
+	// else if (size > 500)
+	// 	chunk = 37 + (size - 500) / 20;
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:12:55 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/12 18:36:21 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/14 13:23:49 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ static int	aatoi_norm(unsigned	int	*nb, int *sign, int *success)
 	}
 	else
 	{
-		*success = True;
-		return (*nb * *sign);
+		if (*success)
+			return (*nb * *sign);
+		else
+			return (False);
 	}
 }
 
@@ -38,6 +40,8 @@ static int	aatoi(const char *str, int *success)
 
 	sign = 1;
 	nb = 0;
+	if (str == NULL || *str == '\0')
+		success = 0;
 	while (ft_isspace(*str))
 		str++;
 	while (*str == '+' || *str == '-')
@@ -46,7 +50,9 @@ static int	aatoi(const char *str, int *success)
 			sign *= -1;
 		str++;
 	}
-	while (*str >= '0' && *str <= '9')
+	if (*str == '\0' || str == NULL)
+		success = 0;
+	while (success && *str >= '0' && *str <= '9')
 	{
 		nb = (nb * 10) + (*str - '0');
 		str++;
@@ -59,14 +65,14 @@ static	void	parse_params_norm(t_Stack *stack, char **tmp)
 	int		len;
 	int		s;
 
-	s = 0;
+	s = 1;
 	len = ft_lendb(tmp) - 1;
 	if (tmp == NULL || len == 0)
 		return ;
 	while (len > -1)
 	{
 		aatoi(tmp[len], &s);
-		if (s != False)
+		if (s != 0)
 			push(stack, aatoi(tmp[len], &s));
 		else
 			panic(1, 1, stack);
@@ -74,41 +80,35 @@ static	void	parse_params_norm(t_Stack *stack, char **tmp)
 	}
 }
 
-void	parse_params(t_Stack *stack, char **entry)
+static	void	__normfree(t_Stack *stack, t_Stack *stack_b, char **tmp)
+{
+	doublefree(tmp);
+	panic(1, 2, stack, stack_b);
+}
+
+void	parse_params(t_Stack *stack, char **entry, t_Stack *stack_b)
 {
 	int		l;
 	char	**tmp;
 	int		s;
 
-	s = 0;
-	l = ft_lendb(entry) - 1;
-	while (l >= 1)
+	s = 1;
+	l = ft_lendb(entry);
+	while (--l >= 1)
 	{
 		tmp = ft_split(entry[l], ' ');
 		if (ft_lendb(tmp) > 1)
 			parse_params_norm(stack, tmp);
 		else
 		{
-			aatoi(entry[l], &s);
+			if (ft_lendb(tmp) == 0)
+				__normfree(stack, stack_b, tmp);
 			if (s == 1)
 				push(stack, aatoi(entry[l], &s));
 			else
-			{
-				doublefree(tmp);
-				panic(1, 1, stack);
-			}
+				__normfree(stack, stack_b, tmp);
 		}
 		doublefree(tmp);
-		l--;
 	}
 }
 
-t_Node	*lastelem(t_Stack	*stack)
-{
-	t_Node	*tmp;
-
-	tmp = stack->top;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp);
-}

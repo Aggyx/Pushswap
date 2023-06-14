@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smagniny <santi.mag777@student.42madrid    +#+  +:+       +#+        */
+/*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 12:10:38 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/10 19:26:43 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/14 10:57:48 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,3 @@ void	set_index(t_Stack *stack_a)
 	cmp_indexes(stack_a, tstack);
 	freestack(tstack);
 }
-
