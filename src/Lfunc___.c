@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:17:56 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/14 12:09:49 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:03:34 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,22 @@ int	intotop(t_Stack *stack, t_Node *node)
 
 int	num_chunks(int ttlen)
 {
+	int	chunk;
+
+	chunk = 1;
 	if (ttlen == 100)
 		return (5);
 	if (ttlen == 500)
 		return (10);
-
-	// chunk = 1;
-	// if (size < 50)
-	// 	chunk = 3 + (size - 6) / 7;
-	// else if (size >= 50 && size < 100)
-	// 	chunk = 10 + (size - 50) / 8;
-	// else if (size >= 100 && size < 350)
-	// 	chunk = 15;
-	// else if (size >= 350 && size <= 500)
-	// 	chunk = 27 + (size - 350) / 15;
-	// else if (size > 500)
-	// 	chunk = 37 + (size - 500) / 20;
-
-	return (0);
+	if (ttlen < 50)
+		chunk = 3 + (ttlen - 6) / 7;
+	else if (ttlen >= 50 && ttlen < 100)
+		chunk = 10 + (ttlen - 50) / 8;
+	else if (ttlen >= 100 && ttlen < 350)
+		chunk = 15;
+	else if (ttlen >= 350 && ttlen <= 500)
+		chunk = 27 + (ttlen - 350) / 15;
+	else if (ttlen > 500)
+		chunk = 37 + (ttlen - 500) / 20;
+	return (chunk);
 }

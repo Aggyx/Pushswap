@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:12:55 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/15 15:50:15 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:01:12 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,3 @@ void	parse_params(t_Stack *stack, char **entry, t_Stack *stack_b)
 		doublefree(tmp);
 	}
 }
-

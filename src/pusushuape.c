@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/15 15:55:27 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:59:22 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ void	sort(t_Stack *stack_a, t_Stack *stack_b)
 		chunks_to_b(stack_a, stack_b, lstsize(stack_a), ch);
 }
 
+/* void ft_leaks()
+{
+	system("leaks -q push_swap");
+	atexit(ft_leaks);
+} */
+
 int	main(int argc, char **argv)
 {
 	t_Stack	*stack_a;
@@ -82,5 +88,5 @@ int	main(int argc, char **argv)
 		freestack(stack_a);
 		freestack(stack_b);
 	}
-	return (1);
+	return (0);
 }

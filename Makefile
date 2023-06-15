@@ -6,7 +6,7 @@
 #    By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/06/13 18:07:29 by smagniny         ###   ########.fr        #
+#    Updated: 2023/06/15 16:56:00 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT = ./inc/libft/
 INC = ./inc/libft/libft.a
 
 ##COMP
-CC = gcc -Wall -Wextra -Werror -fsanitize=address -g
+CC = gcc -Wall -Wextra -Werror
 
 SRC = src/pusushuape.c \
 		src/mv.c src/mv_norm.c \
