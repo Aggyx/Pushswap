@@ -6,51 +6,113 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:24:52 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/12 17:29:49 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:41:48 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/utils.h"
 
-static int	__norm(int *table)
+// static int	__norm(int *table)
+// {
+// 	free(table);
+// 	return (0);
+// }
+
+// static int	check_dupli(t_Stack *stack, int	*table)
+// {
+// 	t_Node	*node;
+// 	t_Node	*nxttmp;
+// 	int		index;
+// 	int		minnum;
+
+// 	node = stack->top;
+// 	minnum = minlistnode(stack)->data;
+// 	node = stack->top;
+// 	while (node != NULL)
+// 	{
+// 		index = node->data - minnum;
+// 		nxttmp = node->next;
+// 		if (table[index] == 1)
+// 			return (__norm(table));
+// 		else
+// 			table[index] = 1;
+// 		node = nxttmp;
+// 	}
+// 	free(table);
+// 	return (1);
+// }
+
+// int	check_dupli_manage(t_Stack *stack)
+// {
+// 	int	*table;
+
+// 	table = (int *) ft_calloc(rangelistint(stack) - 1, sizeof(int));
+// 	if (table == NULL)
+// 	{	
+// 		free(table);
+// 		return (0);
+// 	}
+// 	return (check_dupli(stack, table));
+// }
+
+int	check_digits(char **entry)
 {
-	free(table);
+	int	i;
+	int	j;
+	int	len;
+	int	len_;
+
+	i = 0;
+	len = ft_lendb(entry);
+	while (++i < len)
+	{
+		j = -1;
+		len_ = ft_strlen(entry[i]);
+		while (++j < len_)
+		{
+			if (!ft_isdigit(entry[i][j]) && entry[i][j] != ' ' && \
+				entry[i][j] != '+' && entry[i][j] != '-')
+				return (1);
+			if ((entry[i][j] == '+' || entry[i][j] == '-') && \
+				!ft_isdigit(entry[i][j + 1]))
+				return (1);
+		}
+	}
 	return (0);
 }
 
-static int	check_dupli(t_Stack *stack, int	*table)
+static	int	chkdup(t_Node *current, t_Stack *stack)
+{
+	t_Node	*tmp;
+	int		rep;
+
+	rep = 0;
+	tmp = stack->top;
+	while (tmp)
+	{
+		if (tmp->data == current->data)
+			rep++;
+		if (rep >= 2)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	check_dupli(t_Stack	*stack)
 {
 	t_Node	*node;
-	t_Node	*nxttmp;
-	int		index;
-	int		minnum;
 
 	node = stack->top;
-	minnum = minlistnode(stack)->data;
-	node = stack->top;
-	while (node != NULL)
+	while (node)
 	{
-		index = node->data - minnum;
-		nxttmp = node->next;
-		if (table[index] == 1)
-			return (__norm(table));
-		else
-			table[index] = 1;
-		node = nxttmp;
+		if (chkdup(node, stack))
+			return (0);
+		node = node->next;
 	}
-	free(table);
 	return (1);
 }
 
-int	check_dupli_manage(t_Stack *stack)
-{
-	int	*table;
 
-	table = (int *) ft_calloc(rangelistint(stack) - 1, sizeof(int));
-	if (table == NULL)
-	{	
-		free(table);
-		return (0);
-	}
-	return (check_dupli(stack, table));
-}
+
+

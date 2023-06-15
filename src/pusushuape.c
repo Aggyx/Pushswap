@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/14 13:14:21 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:55:27 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,18 @@ int	main(int argc, char **argv)
 	stack_b = (t_Stack *)ft_calloc(1, sizeof(t_Stack));
 	stack_a->top = NULL;
 	stack_b->top = NULL;
+	if (check_digits(argv))
+		panic(1, 2, stack_a, stack_b);
 	if (argc >= 2)
 		parse_params(stack_a, argv, stack_b);
 	else
 		panic(0, 2, stack_a, stack_b);
-	if (check_dupli_manage(stack_a) == 0)
+	if (check_dupli(stack_a) == 0)
 		panic(1, 2, stack_a, stack_b);
 	else if (check_asc(stack_a) == 1)
 		panic(0, 2, stack_a, stack_b);
 	else
 	{
-		printstack(stack_a, 'a');
 		set_index(stack_a);
 		sort(stack_a, stack_b);
 		freestack(stack_a);

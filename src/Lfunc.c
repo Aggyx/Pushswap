@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:19 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/12 18:12:16 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:14:55 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	check_asc(t_Stack *stack)
 {
 	t_Node	*node;
 
+	if (lstsize(stack) == 0 || lstsize(stack) == 1)
+		return (0);
 	node = stack->top;
 	while (node->next != NULL && node)
 	{

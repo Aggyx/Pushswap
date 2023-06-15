@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:17:25 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/14 12:03:01 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:53:52 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ t_Node	*maxlistnode(t_Stack	*stack);
 int		lstsize(t_Stack *lst);
 t_Stack	*cpystack(t_Stack	*stack);
 int		get_stack_index(t_Stack *stack, t_Node *node);
+int		check_digits(char **entry);
 //parse input
 void	parse_params(t_Stack *stack, char **entry, t_Stack *stack_b);
 //Check 4 duplicates
-int		check_dupli_manage(t_Stack *stack);
+int		check_dupli(t_Stack	*stack);
 int		rangelistint(t_Stack	*stack);
 //take index
 void	set_index(t_Stack *tstack);
