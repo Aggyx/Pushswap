@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:12:55 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/15 17:01:12 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:44:19 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	aatoi_norm(unsigned	int	*nb, int *sign, int *success)
 	}
 	else
 	{
-		if (*success)
+		if (success)
 			return (*nb * *sign);
 		else
 			return (False);
@@ -72,7 +72,7 @@ static	void	parse_params_norm(t_Stack *stack, char **tmp)
 	while (len > -1)
 	{
 		aatoi(tmp[len], &s);
-		if (s != 0)
+		if (s == 1)
 			push(stack, aatoi(tmp[len], &s));
 		else
 			panic(1, 1, stack);
@@ -80,13 +80,31 @@ static	void	parse_params_norm(t_Stack *stack, char **tmp)
 	}
 }
 
-static	void	__normfree(t_Stack *stack, t_Stack *stack_b, char **tmp, int i)
-{
+static	int	__normfree(t_Stack *stack, t_Stack *stack_b, char **tmp, int i)
+{	
+	int	j;
+
+	j = 0;
 	if (ft_lendb(tmp) == 0 || i)
 	{
 		doublefree(tmp);
 		panic(1, 2, stack, stack_b);
+		return (0);
 	}
+	else
+	{
+		while (ft_isspace(tmp[0][j]))
+			j++;
+		if (tmp[0][j] == '+' || tmp[0][j] == '-')
+			j++;
+		if (tmp[0][j] == '+' || tmp[0][j] == '-')
+			__normfree(stack, stack_b, tmp, 1);
+		if (ft_strncmp(tmp[0], "9999999999", 10) == 0)
+			__normfree(stack, stack_b, tmp, 1);
+		else
+			return (1);
+	}
+	return (0);
 }
 
 void	parse_params(t_Stack *stack, char **entry, t_Stack *stack_b)
@@ -104,8 +122,7 @@ void	parse_params(t_Stack *stack, char **entry, t_Stack *stack_b)
 			parse_params_norm(stack, tmp);
 		else
 		{
-			__normfree(stack, stack_b, tmp, 0);
-			if (ft_lendb(tmp) == 1)
+			if (__normfree(stack, stack_b, tmp, 0))
 			{	
 				aatoi(entry[l], &s);
 				if (s == 1)

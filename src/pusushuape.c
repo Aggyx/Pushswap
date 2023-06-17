@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:18:39 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/15 16:59:22 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:14:39 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	panic(int error, int num_args, ...)
 	}
 	va_end(args);
 	if (error)
-		ft_putendl_fd("Error\n", 2);
+		ft_putstr_fd("Error\n", 2);
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:17:56 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/15 17:03:34 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:18:29 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,18 @@ int	num_chunks(int ttlen)
 
 	chunk = 1;
 	if (ttlen == 100)
-		return (5);
-	if (ttlen == 500)
-		return (10);
-	if (ttlen < 50)
+		chunk = 5;
+	else if (ttlen == 500)
+		chunk = 10;
+	else if (ttlen < 50)
 		chunk = 3 + (ttlen - 6) / 7;
 	else if (ttlen >= 50 && ttlen < 100)
-		chunk = 10 + (ttlen - 50) / 8;
-	else if (ttlen >= 100 && ttlen < 350)
-		chunk = 15;
-	else if (ttlen >= 350 && ttlen <= 500)
-		chunk = 27 + (ttlen - 350) / 15;
+		chunk = 5 + (ttlen - 50) / 8;
+	else if (ttlen > 100 && ttlen < 350)
+		chunk = 10;
+	else if (ttlen >= 350 && ttlen < 500)
+		chunk = 10 + (ttlen - 350) / 15;
 	else if (ttlen > 500)
-		chunk = 37 + (ttlen - 500) / 20;
+		chunk = 20 + (ttlen - 500) / 20;
 	return (chunk);
 }
