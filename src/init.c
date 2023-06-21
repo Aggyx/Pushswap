@@ -6,42 +6,21 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:12:55 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/17 14:44:19 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/21 12:51:41 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/utils.h"
 
-static int	aatoi_norm(unsigned	int	*nb, int *sign, int *success)
-{
-	if (*nb > 2147483647 && *sign == 1)
-	{
-		*success = False;
-		return (False);
-	}
-	else if (*nb > 2147483648 && *sign == -1)
-	{	
-		*success = False;
-		return (False);
-	}
-	else
-	{
-		if (success)
-			return (*nb * *sign);
-		else
-			return (False);
-	}
-}
-
 static int	aatoi(const char *str, int *success)
 {
-	unsigned int		nb;
+	long long int		nb;
 	int					sign;
 
 	sign = 1;
 	nb = 0;
-	if (str == NULL || *str == '\0')
-		success = 0;
+	if (ft_strlen(str) > 11)
+		*success = 0;
 	while (ft_isspace(*str))
 		str++;
 	if (*str == '+' || *str == '-')
@@ -57,7 +36,9 @@ static int	aatoi(const char *str, int *success)
 		nb = (nb * 10) + (*str - '0');
 		str++;
 	}
-	return (aatoi_norm(&nb, &sign, success));
+	if ((nb > 2147483647 && sign == 1) || (nb > 2147483648 && sign == -1))
+		*success = 0;
+	return ((int)nb * sign);
 }
 
 static	void	parse_params_norm(t_Stack *stack, char **tmp)

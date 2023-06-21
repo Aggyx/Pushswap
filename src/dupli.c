@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 11:24:52 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/15 17:11:16 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:27:44 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	check_digits(char **entry)
 				return (1);
 			if ((entry[i][j] == '+' || entry[i][j] == '-') && \
 				!ft_isdigit(entry[i][j + 1]))
+				return (1);
+			if (j != 0 && (entry[i][j] == '+' || entry[i][j] == '-') && \
+				entry[i][j - 1] != ' ')
 				return (1);
 		}
 	}

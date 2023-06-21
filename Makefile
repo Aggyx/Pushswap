@@ -6,7 +6,7 @@
 #    By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:49:16 by smagniny          #+#    #+#              #
-#    Updated: 2023/06/17 14:48:25 by smagniny         ###   ########.fr        #
+#    Updated: 2023/06/21 12:51:11 by smagniny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ LIBFT = ./inc/libft/
 INC = ./inc/libft/libft.a
 
 ##COMP
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror -pedantic
 
-SRC = src/pusushuape.c \
+SRC = src/main.c \
 		src/mv.c src/mv_norm.c \
-		src/Lfunc.c src/Lfunc__.c  src/Lfunc___.c\
+		src/stackfunc.c src/stackfunc_.c src/stackfunc__.c \
 		src/init.c \
 		src/dupli.c src/index.c \
 		src/cpystack.c \
@@ -50,6 +50,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-test:
-	./bashtester

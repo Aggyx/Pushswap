@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:17:25 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/15 15:53:52 by smagniny         ###   ########.fr       */
+/*   Updated: 2023/06/21 12:03:25 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 
 # include "libft/libft.h"
 
-typedef struct Node
+typedef struct s_node
 {
 	int				data;
 	int				index;
-	struct Node		*prev;
-	struct Node		*next;
+	struct s_node	*prev;
+	struct s_node	*next;
 }		t_Node;
 
-typedef struct Stack
+typedef struct s_stack
 {
-	struct Node	*top;
+	struct s_node	*top;
 }		t_Stack;
 
 //developpement
