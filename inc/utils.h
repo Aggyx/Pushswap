@@ -6,7 +6,7 @@
 /*   By: smagniny <smagniny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:17:25 by smagniny          #+#    #+#             */
-/*   Updated: 2023/06/21 12:03:25 by smagniny         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:14:30 by smagniny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define UTILS_H
 
 # include "libft/libft.h"
-
+# include <stdarg.h>
+# include <limits.h>
 typedef struct s_node
 {
 	int				data;
